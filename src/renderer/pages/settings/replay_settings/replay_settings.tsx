@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 import React from "react";
 
 import { MultiPathInput } from "@/components/multi_path_input/multi_path_input";
@@ -19,26 +20,48 @@ export const ReplaySettings = React.memo(() => {
     <div>
       <NetplayReplayToggles />
       <SettingItem name={Messages.rootSlpFolder()} description={Messages.rootSlpFolderDescription()}>
-        <PathInput
-          disabled={netplayDolphinOpen}
-          tooltipText={netplayDolphinOpen ? Messages.closeDolphinToChangeSetting() : ""}
-          value={localReplayDir}
-          onSelect={setLocalReplayDir}
-          options={{
-            properties: ["openDirectory"],
-          }}
-          placeholder={Messages.noFolderSet()}
-        />
+        <div>
+          <PathInput
+            disabled={netplayDolphinOpen}
+            tooltipText={netplayDolphinOpen ? Messages.closeDolphinToChangeSetting() : ""}
+            value={localReplayDir}
+            onSelect={setLocalReplayDir}
+            options={{
+              properties: ["openDirectory"],
+            }}
+            placeholder={Messages.noFolderSet()}
+          />
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={!localReplayDir}
+            onClick={() => void window.electron.shell.openPath(localReplayDir)}
+            style={{ marginTop: 8 }}
+          >
+            {Messages.openFolder()}
+          </Button>
+        </div>
       </SettingItem>
       <SettingItem name={Messages.spectatorSlpFolder()} description={Messages.spectatorSlpFolderDescription()}>
-        <PathInput
-          value={spectateDir}
-          onSelect={setSpectateDir}
-          options={{
-            properties: ["openDirectory"],
-          }}
-          placeholder={Messages.noFolderSet()}
-        />
+        <div>
+          <PathInput
+            value={spectateDir}
+            onSelect={setSpectateDir}
+            options={{
+              properties: ["openDirectory"],
+            }}
+            placeholder={Messages.noFolderSet()}
+          />
+          <Button
+            variant="outlined"
+            color="primary"
+            disabled={!spectateDir}
+            onClick={() => void window.electron.shell.openPath(spectateDir)}
+            style={{ marginTop: 8 }}
+          >
+            {Messages.openFolder()}
+          </Button>
+        </div>
       </SettingItem>
       <SettingItem name={Messages.additionalSlpFolders()} description={Messages.additionalSlpFoldersDescription()}>
         <MultiPathInput

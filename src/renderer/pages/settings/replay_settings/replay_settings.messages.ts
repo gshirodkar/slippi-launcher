@@ -4,6 +4,7 @@ export const ReplaySettingsMessages = {
 
   closeDolphinToChangeSetting: () => "Close Dolphin to change this setting",
   noFolderSet: () => "No folder set",
+  openFolder: () => "Open Folder",
 
   spectatorSlpFolder: () => "Spectator SLP Folder",
   spectatorSlpFolderDescription: () => "The folder where spectated games should be saved.",
